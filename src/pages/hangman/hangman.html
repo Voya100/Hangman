@@ -1,0 +1,19 @@
+<ion-header class="bar-stable">
+  <button class="button button-clear icon ion-navicon"></button>
+  <h1 class="title">Hangman</h1>
+  <button class="button button-clear icon ion-gear-a"></button>
+</ion-header>
+
+<ion-content scroll="false" overflow-scroll="true">
+    <img src='img/hangman{{9 - guesses_left}}.png' class='hang_img'>
+    <div class='word_content'>
+      <div>
+        <div class="word_guess">
+          {{word_guess}}
+        </div>
+        <div class="alphabet_container">
+          <button class="alphabet button" ng-repeat="a in alphabet" ng-click="guess(a)" ng-disabled="guesses.indexOf(a) !== -1">{{a}}</button>
+        </div>
+      </div>
+    </div>
+</ion-content>

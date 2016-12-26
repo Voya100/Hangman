@@ -1,0 +1,83 @@
+.alphabet_container{
+    text-align: center;
+}
+
+.alphabet.button{
+    min-width:45px;
+    min-height:45px;
+    width:20px;
+    height:25px;
+    padding: 2px;
+    margin:2px;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size:24px;
+    text-align:center;
+    border:2px solid saddlebrown;
+    background: sandybrown;
+    &:hover{
+        background: lightgray;
+    }
+}
+
+
+.word_guess{
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size:28px;
+    letter-spacing:5px;
+    text-align: center;
+    margin:5px;
+}
+
+$alp_size: 50px;
+$word_height: 30px;
+
+.word_content{
+    padding-bottom: 5px;
+    @media screen and (orientation: landscape) {
+        float: left;
+        min-width: 400px;
+        max-width: 50%;
+        height: 100%;
+        display: table;
+        &>div{
+            height:100%;
+            vertical-align: middle;
+            display: table-cell;
+        }
+    }
+
+    @media screen and (orientation: portrait){
+        width:100%;
+        height: 6 * $alp_size + $word_height;
+        @media (min-width: 6 * $alp_size){
+            height: 5 * $alp_size + $word_height;
+        }
+        @media (min-width: 7 * $alp_size) {
+            height: 4 * $alp_size + $word_height;
+        }
+    }
+}
+
+.hang_img{
+    width:100%;
+    height:100%;
+    @media screen and (orientation: landscape) {
+        float: right;
+        width: calc(100% - 400px);
+        max-width:50%;
+    }
+    @media screen and (orientation: portrait){
+        max-width:100%;
+        $words_height: 6 * $alp_size + $word_height;
+        height: calc(100% - #{$words_height});
+        @media (min-width: 6 * $alp_size){
+            $words_height2: 5 * $alp_size + $word_height;
+            height: calc(100% - #{$words_height2});
+        }
+        @media (min-width: 7 * $alp_size) {
+            $words_height3: 4 * $alp_size + $word_height;
+            height: calc(100% - #{$words_height3});
+        }
+    }
+
+}
