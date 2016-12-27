@@ -25,7 +25,6 @@ export class WordRandomizerService {
      while(len){
        len--;
        let i = Math.floor(Math.random() * len);
-       console.log(i,len);
        let word2 = newWords[i];
        newWords[i] = newWords[len];
        newWords[len] = word2;
@@ -51,7 +50,6 @@ export class WordRandomizerService {
       }
       // If list is empty, get more words
       if(this.words.length == 0){
-        console.log(this.getWords());
         this.getWords()
             .then(() => {
               if(!resolved){
