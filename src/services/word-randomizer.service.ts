@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { apiKey } from './apiKey'
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
