@@ -5,6 +5,9 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { HangmanPage } from '../pages/hangman/hangman'
+
+import { WordRandomizerService} from '../services/word-randomizer.service'
 
 @NgModule({
   declarations: [
@@ -12,7 +15,8 @@ import { TabsPage } from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    HangmanPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,8 +27,9 @@ import { TabsPage } from '../pages/tabs/tabs';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    HangmanPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, WordRandomizerService]
 })
 export class AppModule {}
