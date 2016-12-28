@@ -2,5 +2,20 @@
   <navbar></navbar>
 </ion-header>
 <ion-content class="no-scroll">
-    Statistics
+
+  <ion-list>
+    <ion-item-divider>
+      Statistics
+    </ion-item-divider>
+    <ion-item>
+      Games <span class="stat" item-right>{{data.victories + data.losses}}</span>
+    </ion-item>
+    <ion-item>
+      Victories <span class="stat" item-right>{{data.victories}} <span *ngIf="data.victories">({{victory_percent()}} %)</span></span>
+    </ion-item>
+    <ion-item>
+      Losses <span class="stat" item-right>{{data.losses}} <span *ngIf="data.losses">({{loss_percent()}} %)</span></span>
+    </ion-item>
+  </ion-list>
+  <button ion-button block color="primary"  (click)="reset()">Reset</button>
 </ion-content>

@@ -48,5 +48,12 @@ export class GameDataService {
     this.storage.set('losses', this.losses);
   }
 
+  reset_statistics(){
+    this.victories = 0;
+    this.losses = 0;
+    this.storage.set('victories', 0);
+    this.storage.set('losses', 0);
+  }
+
   
 }
