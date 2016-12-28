@@ -2,5 +2,23 @@
     <navbar></navbar>
 </ion-header>
 <ion-content class="no-scroll">
-    Settings
+  <ion-list>
+    <ion-item-divider>
+      <h1>Settings</h1>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>Language</ion-label>
+      <ion-select [ngModel]="settings.language" (ionChange)="settings.updateLanguage($event)">
+        <ion-option *ngFor="let lang of settings.languages" [value]="lang">{{lang.charAt(0).toUpperCase() + lang.slice(1)}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Difficulty</ion-label>
+      <ion-select [ngModel]="settings.difficulty" (ionChange)="settings.updateDifficulty($event)">
+        <ion-option value="0">Easy</ion-option>
+        <ion-option value="1">Medium</ion-option>
+        <ion-option value="2">Hard</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-content>

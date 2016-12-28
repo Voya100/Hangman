@@ -6,17 +6,22 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SettingsService {
 
+  // Changeable settings
   language: string = 'english';
+  difficulty = 0;
+
+  // Set based on settings
   lang: any;
   wordList: string[] = [];
 
-  max_guesses = 9;
-  difficulty = 1;
-
-  initialized = false;
+  // Constants
+  readonly max_guesses = 9;
 
   // Supported languages
   readonly languages:string[] = ['english'];
+
+  
+  initialized = false;
 
   constructor(private http: Http, private storage: Storage) {
   }
@@ -58,5 +63,10 @@ export class SettingsService {
     return this.storage.set('language', lang).then(() => {
       return this.getLanguageFiles();
     });
+  }
+
+  updateDifficulty(difficulty: number){
+    this.difficulty = difficulty;
+    this.storage.set('difficulty', difficulty);
   }
 }
