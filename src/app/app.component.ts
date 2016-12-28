@@ -6,6 +6,9 @@ import { HangmanPage } from '../pages/hangman/hangman'
 import { SettingsPage } from '../pages/settings/settings';
 import { StatisticsPage } from '../pages/statistics/statistics';
 
+import { GameDataService } from '../services/game-data.service'
+import { SettingsService } from '../services/settings.service'
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -13,12 +16,17 @@ export class MyApp {
 
   rootPage: any = HangmanPage;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, gameData: GameDataService, settings: SettingsService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      //Splashscreen.hide();
+
+      settings.init().then(() => {
+        gameData.init();
+        Splashscreen.hide();
+      })
+
     });
   }
 

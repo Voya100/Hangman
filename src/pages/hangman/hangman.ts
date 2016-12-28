@@ -4,6 +4,7 @@ import {AlertController, NavController, LoadingController } from 'ionic-angular'
 
 import { NavBarComponent } from '../../shared/navbar/navbar.component'
 
+import { GameDataService } from '../../services/game-data.service'
 import { WordRandomizerService } from '../../services/word-randomizer.service'
 
 @Component({
@@ -12,25 +13,19 @@ import { WordRandomizerService } from '../../services/word-randomizer.service'
 export class HangmanPage implements OnInit {
 
   // Settings
-  max_guesses: number = 9;
   alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-  
-  victory = false;
-  guesses= [];
-  guesses_left: number = this.max_guesses;
-  word = "";
-  word_guess = "";
-
 
   constructor(private alertCtrl: AlertController,
               private navCtrl: NavController, 
               private loader: LoadingController,
+              private data: GameDataService,
               private randomWord: WordRandomizerService) {
-
   }
 
   ngOnInit() { 
-    this.reset();
+    if(this.data.word == ""){
+      this.reset();
+    }
   }
 
   // Reveals characters in the word which are guessed correctly
@@ -38,18 +33,18 @@ export class HangmanPage implements OnInit {
   // If revealed word matches original word, game ends
   reveal_word(){
     let reveal = "";
-    for(var i=0; i<this.word.length; i++){
+    for(var i=0; i<this.data.word.length; i++){
       // Character is in the word or it isn't in the alphabet
-      if(this.guesses.indexOf(this.word[i]) > -1 || this.alphabet.indexOf(this.word[i]) == -1){
-        reveal += this.word[i];
+      if(this.data.guesses.indexOf(this.data.word[i]) > -1 || this.alphabet.indexOf(this.data.word[i]) == -1){
+        reveal += this.data.word[i];
       }else{
         reveal += "_";
       }
     }
-    this.word_guess = reveal;
+    this.data.word_guess = reveal;
     // Victory
-    if(reveal == this.word){
-      this.victory = true;
+    if(reveal == this.data.word){
+      this.data.victory = true;
       this.gameOver();
     }
   }
@@ -58,13 +53,13 @@ export class HangmanPage implements OnInit {
   // If alphabet is in the word, more of the word is revealed
   // Otherwise guesses are reduced, and game may end.
   guess(a){
-    this.guesses.push(a);
-    if(this.word.indexOf(a) > -1){
+    this.data.guesses.push(a);
+    if(this.data.word.indexOf(a) > -1){
       this.reveal_word();
     }else{
-      this.guesses_left -= 1;
-      if(this.guesses_left <= 0){
-        this.victory = false;
+      this.data.guesses_left -= 1;
+      if(this.data.guesses_left <= 0){
+        this.data.victory = false;
         this.gameOver();
         console.log("Game over");
       }
@@ -79,9 +74,9 @@ export class HangmanPage implements OnInit {
     loading.present();
 
     this.randomWord.getWord().then((word) =>{
-      this.word = word;
-      this.guesses = [];
-      this.guesses_left = this.max_guesses;
+      this.data.word = word;
+      this.data.guesses = [];
+      this.data.guesses_left = this.data.max_guesses;
       this.reveal_word();
       loading.dismiss();
     });
@@ -89,9 +84,9 @@ export class HangmanPage implements OnInit {
 
   gameOver(){
     let gameOverScreen = this.alertCtrl.create({
-      title: this.victory ? "Victory!" : "Game over!",
-      message: this.victory ? "You guessed correctly, the right word was " + this.word + "." : 
-                  "You guessed wrong too many times and you were hung.<br><br>The right answer would have been " + this.word + ".",
+      title: this.data.victory ? "Victory!" : "Game over!",
+      message: this.data.victory ? "You guessed correctly, the right word was " + this.data.word + "." : 
+                  "You guessed wrong too many times and you were hung.<br><br>The right answer would have been " + this.data.word + ".",
       buttons: [
         {
           text: 'Play again',
@@ -103,6 +98,11 @@ export class HangmanPage implements OnInit {
       ],
       enableBackdropDismiss: false
     });
+    if(this.data.victory){
+      this.data.add_victory();
+    }else{
+      this.data.add_loss();
+    }
     gameOverScreen.present();
 }
 

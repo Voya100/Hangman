@@ -2,14 +2,14 @@
   <navbar></navbar>
 </ion-header>
 <ion-content class="no-scroll">
-    <img src='img/hangman{{max_guesses - guesses_left}}.png' class='hang_img'>
+    <img src='img/hangman{{data.max_guesses - data.guesses_left}}.png' class='hang_img'>
     <div class='word_content'>
       <div>
         <div class="word_guess">
-          {{word_guess}}
+          {{data.word_guess}}
         </div>
         <div class="alphabet_container">
-          <button class="alphabet button" *ngFor="let a of alphabet" (click)="guess(a)" [disabled]="guesses.indexOf(a) !== -1">{{a}}</button>
+          <button class="alphabet button" *ngFor="let a of alphabet" (click)="guess(a)" [disabled]="data.guesses.indexOf(a) !== -1">{{a}}</button>
         </div>
       </div>
     </div>
