@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import {AlertController, NavController, LoadingController } from 'ionic-angular';
 
+import { NavBarComponent } from '../../shared/navbar/navbar.component'
+
 import { WordRandomizerService } from '../../services/word-randomizer.service'
 
 @Component({
