@@ -1,0 +1,22 @@
+{
+  "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Ä","Ö"],
+  "hangman": "Hirsipuu",
+
+  "statistics": "Tilastot",
+  "games": "Pelit",
+  "victories": "Voitot",
+  "losses": "Tappiot",
+  "reset": "Resetoi",
+  "delete_statistics": "Poista tilastotiedot?",
+  "delete_message": "Tämä poistaa kaikki nykyiset tilastotiedot - tätä ei voi peruuttaa.",
+  "cancel": "Peruuta",
+
+  "settings": "Asetukset",
+  "language": "Kieli",
+  "english": "Englanti",
+  "finnish": "Suomi",
+  "difficulty": "Vaikeusaste",
+  "easy": "Helppo",
+  "medium": "Keskivaikea",
+  "hard": "Vaikea"
+}
