@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { SettingsService } from '../../services/settings.service'
 
 @Component({
   templateUrl: 'settings.html'
 })
-export class SettingsPage implements OnInit {
+export class SettingsPage  {
+
+  difficulties = ['easy', 'medium', 'hard'];
+
   constructor(private settings: SettingsService) { }
 
-  ngOnInit() { }
+  updateLanguage(value){
+    this.settings.updateLanguage(value);
+  }
 }

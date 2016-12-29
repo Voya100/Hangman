@@ -5,12 +5,15 @@ import { HangmanPage } from '../../pages/hangman/hangman'
 import { SettingsPage } from '../../pages/settings/settings';
 import { StatisticsPage } from '../../pages/statistics/statistics';
 
+import { SettingsService } from '../../services/settings.service'
+
 @Component({
   selector: 'navbar',
   templateUrl: 'navbar.component.html'
 })
 export class NavBarComponent implements OnInit {
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController,
+              private settings: SettingsService) { }
 
   ngOnInit() { }
 

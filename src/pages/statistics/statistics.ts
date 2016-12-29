@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
 import { GameDataService } from '../../services/game-data.service'
+import { SettingsService } from '../../services/settings.service'
 
 @Component({
   templateUrl: 'statistics.html'
 })
 export class StatisticsPage implements OnInit {
   constructor(private alertCtrl: AlertController,
-              private data: GameDataService) { }
+              private data: GameDataService,
+              private settings: SettingsService) { }
 
   ngOnInit() { }
 
@@ -23,14 +25,14 @@ export class StatisticsPage implements OnInit {
 
   reset(){
     let confirm = this.alertCtrl.create({
-      title: 'Delete statistics?',
-      message: 'This action will reset statistics to 0 - there isn\'t a way to reverse it.',
+      title: this.settings.lang.delete_statistics,
+      message: this.settings.lang.delete_message,
       buttons: [
         {
-          text: 'Cancel'
+          text: this.settings.lang.cancel
         },
         {
-          text: 'Reset',
+          text: this.settings.lang.reset,
           handler: () => {
             this.data.reset_statistics();
           }

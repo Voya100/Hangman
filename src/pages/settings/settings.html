@@ -4,20 +4,23 @@
 <ion-content class="no-scroll">
   <ion-list>
     <ion-item-divider>
-      <h1>Settings</h1>
+      <h1>{{settings.lang?.settings}}</h1>
     </ion-item-divider>
     <ion-item>
-      <ion-label>Language</ion-label>
-      <ion-select [ngModel]="settings.language" (ionChange)="settings.updateLanguage($event)">
-        <ion-option *ngFor="let lang of settings.languages" [value]="lang">{{lang.charAt(0).toUpperCase() + lang.slice(1)}}</ion-option>
+      <ion-label>{{settings.lang?.language}}</ion-label>
+      <ion-select [ngModel]="settings.language" (ionChange)="updateLanguage($event)" [selectedText]="settings.lang[settings.language]">
+        <ion-option *ngFor="let lang of settings.languages" [value]="lang">
+          {{settings.lang[lang]}}
+          </ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Difficulty</ion-label>
-      <ion-select [ngModel]="settings.difficulty" (ionChange)="settings.updateDifficulty($event)">
-        <ion-option value="0">Easy</ion-option>
-        <ion-option value="1">Medium</ion-option>
-        <ion-option value="2">Hard</ion-option>
+      <ion-label>{{settings.lang?.difficulty}}</ion-label>
+      <ion-select [ngModel]="settings.difficulty" (ionChange)="settings.updateDifficulty($event)" 
+                  [selectedText]="settings.lang[difficulties[settings.difficulty]]">
+        <ion-option value="0">{{settings.lang?.easy}}</ion-option>
+        <ion-option value="1">{{settings.lang?.medium}}</ion-option>
+        <ion-option value="2">{{settings.lang?.hard}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>

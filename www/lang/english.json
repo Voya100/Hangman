@@ -1,3 +1,22 @@
 {
-  "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+  "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
+  "hangman": "Hangman",
+
+  "statistics": "Statistics",
+  "games": "Games",
+  "victories": "Victories",
+  "losses": "Losses",
+  "reset": "Reset",
+  "delete_statistics": "Delete statistics?",
+  "delete_message": "This action will reset statistics to 0 - there isn't a way to reverse it.",
+  "cancel": "Cancel",
+
+  "settings": "Settings",
+  "language": "Language",
+  "english": "English",
+  "finnish": "Finnish",
+  "difficulty": "Difficulty",
+  "easy": "Easy",
+  "medium": "Medium",
+  "hard": "Hard"
 }
