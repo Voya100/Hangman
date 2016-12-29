@@ -3,8 +3,6 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HangmanPage } from '../pages/hangman/hangman'
-import { SettingsPage } from '../pages/settings/settings';
-import { StatisticsPage } from '../pages/statistics/statistics';
 
 import { GameDataService } from '../services/game-data.service'
 import { SettingsService } from '../services/settings.service'
@@ -21,7 +19,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-
+      
       settings.init().then(() => {
         gameData.init();
         Splashscreen.hide();

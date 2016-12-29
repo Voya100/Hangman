@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavBarComponent } from '../../shared/navbar/navbar.component'
-
 import { SettingsService } from '../../services/settings.service'
 
 @Component({

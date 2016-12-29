@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
-import { NavBarComponent } from '../../shared/navbar/navbar.component'
-
 import { GameDataService } from '../../services/game-data.service'
 
 @Component({
