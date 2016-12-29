@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {AlertController, NavController, LoadingController } from 'ionic-angular';
 
 import { GameDataService } from '../../services/game-data.service'
+import { SettingsService } from '../../services/settings.service'
 import { WordRandomizerService } from '../../services/word-randomizer.service'
 
 @Component({
@@ -10,13 +11,11 @@ import { WordRandomizerService } from '../../services/word-randomizer.service'
 })
 export class HangmanPage implements OnInit {
 
-  // Settings
-  alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-
   constructor(private alertCtrl: AlertController,
               private navCtrl: NavController, 
               private loader: LoadingController,
               private data: GameDataService,
+              private settings: SettingsService,
               private randomWord: WordRandomizerService) {
   }
 
@@ -26,41 +25,13 @@ export class HangmanPage implements OnInit {
     }
   }
 
-  // Reveals characters in the word which are guessed correctly
-  // If a character isn't in the alphabet list, it is shown automatically (dashes and foreign characters, as an example)
-  // If revealed word matches original word, game ends
-  reveal_word(){
-    let reveal = "";
-    for(var i=0; i<this.data.word.length; i++){
-      // Character is in the word or it isn't in the alphabet
-      if(this.data.guesses.indexOf(this.data.word[i]) > -1 || this.alphabet.indexOf(this.data.word[i]) == -1){
-        reveal += this.data.word[i];
-      }else{
-        reveal += "_";
-      }
-    }
-    this.data.word_guess = reveal;
-    // Victory
-    if(reveal == this.data.word){
-      this.data.victory = true;
-      this.gameOver();
-    }
-  }
-
   // Guesses an alphabet
-  // If alphabet is in the word, more of the word is revealed
-  // Otherwise guesses are reduced, and game may end.
+  // If alphabet is in the word, more of the word is revealed.
+  // Otherwise guesses are reduced.
+  // Game ends once word has been guessed or all guesses have been used.
   guess(a){
-    this.data.guesses.push(a);
-    if(this.data.word.indexOf(a) > -1){
-      this.reveal_word();
-    }else{
-      this.data.guesses_left -= 1;
-      if(this.data.guesses_left <= 0){
-        this.data.victory = false;
+    if(this.data.guess(a)){
         this.gameOver();
-        console.log("Game over");
-      }
     }
   }
 
@@ -71,15 +42,10 @@ export class HangmanPage implements OnInit {
     })
     loading.present();
 
-    this.randomWord.getWord().then((word) =>{
-      this.data.word = word;
-      this.data.guesses = [];
-      this.data.guesses_left = this.data.max_guesses;
-      this.reveal_word();
-      loading.dismiss();
-    });
+    this.data.reset_game().then(() => loading.dismiss());
   }
 
+  // Gives game over screen and adds victory/loss
   gameOver(){
     let gameOverScreen = this.alertCtrl.create({
       title: this.data.victory ? "Victory!" : "Game over!",

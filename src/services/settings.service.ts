@@ -11,7 +11,7 @@ export class SettingsService {
   difficulty = 0;
 
   // Set based on settings
-  lang: any;
+  lang: any = {alphabet: []};
   wordList: string[] = [];
 
   // Constants
