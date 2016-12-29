@@ -1,6 +1,11 @@
 {
   "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
   "hangman": "Hangman",
+  "victory": "Victory!",
+  "game_over": "Game over!",
+  "victory_message": "You guessed correctly, the right word was ",
+  "game_over_message": "You guessed wrong too many times and you were hung.<br><br>The right answer would have been ",
+  "play_again": "Play again",
 
   "statistics": "Statistics",
   "games": "Games",

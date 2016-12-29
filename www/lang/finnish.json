@@ -1,6 +1,11 @@
 {
   "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Ä","Ö"],
   "hangman": "Hirsipuu",
+  "victory": "Voitit!",
+  "game_over": "Hävisit!",
+  "victory_message": "Arvasit oikein, oikea sana oli ",
+  "game_over_message": "Arvasit väärin liian monta kertaa ja jouduit hirtetyksi.<br><br>Oikea vastaus olisi ollut ",
+  "play_again": "Pelaa uudestaan",
 
   "statistics": "Tilastot",
   "games": "Pelit",

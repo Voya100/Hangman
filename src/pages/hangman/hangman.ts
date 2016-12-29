@@ -48,12 +48,12 @@ export class HangmanPage implements OnInit {
   // Gives game over screen and adds victory/loss
   gameOver(){
     let gameOverScreen = this.alertCtrl.create({
-      title: this.data.victory ? "Victory!" : "Game over!",
-      message: this.data.victory ? "You guessed correctly, the right word was " + this.data.word + "." : 
-                  "You guessed wrong too many times and you were hung.<br><br>The right answer would have been " + this.data.word + ".",
+      title: this.data.victory ? this.settings.lang.victory : this.settings.lang.victory,
+      message: this.data.victory ? this.settings.lang.victory_message + this.data.word + "." : 
+                                   this.settings.lang.game_over_message + this.data.word + ".",
       buttons: [
         {
-          text: 'Play again',
+          text: this.settings.lang.play_again,
           cssClass: 'game_over_button',
           handler: () => {
             this.reset();
@@ -68,6 +68,6 @@ export class HangmanPage implements OnInit {
       this.data.add_loss();
     }
     gameOverScreen.present();
-}
+  }
 
 }
