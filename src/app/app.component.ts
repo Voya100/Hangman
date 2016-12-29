@@ -12,7 +12,7 @@ import { SettingsService } from '../services/settings.service'
 })
 export class MyApp {
 
-  rootPage: any = HangmanPage;
+  rootPage: any;
 
   constructor(platform: Platform, gameData: GameDataService, settings: SettingsService) {
     platform.ready().then(() => {
@@ -23,6 +23,7 @@ export class MyApp {
       settings.init().then(() => {
         gameData.init();
         Splashscreen.hide();
+        this.rootPage = HangmanPage;
       })
 
     });

@@ -3,6 +3,8 @@ import { apiKey } from './apiKey'
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+import { SettingsService } from './settings.service'
+
 @Injectable()
 export class WordRandomizerService {
 
@@ -11,7 +13,8 @@ export class WordRandomizerService {
   // Hard: 1000-25000, Medium: 25000-250000, Easy: 250000
   difficulty = 1000000;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private settings: SettingsService) { }
 
   // Gets 15 new words from API and saves them to words. Returns a promise.
   getWords(){
@@ -42,6 +45,10 @@ export class WordRandomizerService {
   getWord(): Promise<string>{
     let promise = new Promise((resolve, reject) => {
       let resolved = false;
+      if(this.settings.language !== 'english'){
+        resolve(this.getWordFromList());
+        return;
+      }
 
       // Enough words in the word list
       if(this.words.length >= 1){
@@ -58,13 +65,17 @@ export class WordRandomizerService {
             })
             .catch(() => {
               if(!resolved){
-                resolve("error test".toUpperCase);
+                resolve(this.getWordFromList());
                 console.log("Error caught")
               }
             })
       }
     });
     return promise;
+  }
+
+  getWordFromList(){
+    return this.settings.wordList[Math.floor(Math.random()*this.settings.wordList.length)].toUpperCase();
   }
 
 }
