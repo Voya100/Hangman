@@ -20,7 +20,12 @@ export class HangmanPage implements OnInit {
   }
 
   ngOnInit() { 
+    // Reset if app is opened
     if(this.data.word == ""){
+      this.reset();
+    }else if(this.data.language !== this.settings.language){
+      // Language has been changed, word needs to be reset
+      this.data.language = this.settings.language;
       this.reset();
     }
   }

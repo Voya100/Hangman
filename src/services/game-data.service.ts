@@ -20,6 +20,7 @@ export class GameDataService {
   guesses_left: number;
   word: string = "";
   word_guess:string = "";
+  language: string;
 
   
 
@@ -27,6 +28,7 @@ export class GameDataService {
               private settings: SettingsService,
               private wordRandomizer: WordRandomizerService) { 
                 this.guesses_left = settings.max_guesses;
+                this.language = settings.language;
               }
 
   init(){
