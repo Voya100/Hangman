@@ -23,14 +23,65 @@ export class HangmanPage implements OnInit {
   }
 
   ngOnInit() { 
-    // Reset if app is opened
-    if(this.data.word == ""){
-      this.reset();
-    }else if(this.data.language !== this.settings.language){
-      // Language has been changed, word needs to be reset
-      this.data.language = this.settings.language;
-      this.reset();
+    // If app is launched for the first time, language is asked
+    if(!this.settings.initialized){
+      this.askLanguage();
+    }else{
+      // Reset if app is opened (no word yet)
+      if(this.data.word == ""){
+        this.reset();
+      }else if(this.data.language !== this.settings.language){
+        // Language has been changed, word needs to be reset
+        this.data.language = this.settings.language;
+        this.reset();
+      }
     }
+  }
+
+  // Asks user's language and shows story after that
+  askLanguage() {
+    let inputs = this.settings.languages.map((lang) =>  {
+      return {
+        type: 'radio',
+        label: this.settings.lang[lang],
+        value: lang,
+        checked: lang == 'english'
+      }
+    });
+
+    let alert = this.alertCtrl.create({
+      title: 'Select language',
+      inputs: inputs,
+      buttons: [{
+        text: 'Continue',
+        handler: data => {
+          this.settings.updateLanguage(data).then(() => {
+            this.showStory();
+            this.data.reset_game();
+          })
+        }
+      }],
+      enableBackdropDismiss: false,
+      cssClass: 'language_screen'
+      })
+    alert.present();
+  }
+
+  // Shows story of the game
+  showStory(){
+    let storyScreen = this.alertCtrl.create({
+      title: this.settings.lang.story,
+      message: this.settings.lang.story_content,
+      buttons: [
+        {
+          text: this.settings.lang.continue,
+          cssClass: 'game_over_button'
+        }
+      ],
+      enableBackdropDismiss: false,
+      cssClass: 'story_screen'
+    });
+    storyScreen.present();
   }
 
   // Guesses an alphabet
@@ -62,13 +113,13 @@ export class HangmanPage implements OnInit {
       buttons: [
         {
           text: this.settings.lang.play_again,
-          cssClass: 'game_over_button',
           handler: () => {
             this.reset();
           }
         }
       ],
-      enableBackdropDismiss: false
+      enableBackdropDismiss: false,
+      cssClass: 'game_over_screen'
     });
     if(this.data.victory){
       this.data.add_victory();

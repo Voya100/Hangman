@@ -1,6 +1,10 @@
 {
   "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Ä","Ö"],
   "hangman": "Hirsipuu",
+  "story": "Tarina",
+  "continue": "Jatka",
+  "story_content": "Olet valtiolle työskentelevä salainen agentti. Eräänä päivänä saat salaisen tehtävän, jossa soluttaudut rikollisorganisaatioon. Yrität saada heidän luottamuksensa osallistumalla pankkiryöstöön, mutta rikostoverisi päättävätkin kolkata sinut rikospaikalle. Viranomaiset löytävät sinut tajuttomana rikospaikalta ja toteavat sinut syylliseksi.<br><br> Tajuttomana ollessasi saat kuolemantuomion, ja hirsipuuta on jo aloitettu kasaamaan! Valtio antoi sinulle onneksi salaisen avainsanan juuri tällaisia tilanteita varten - isku päähän valitettavasti sai sinut unohtamaan, mikä kyseinen sana oli.<br><br>Tiedät, että hirttäjä tietää salaisen sanan. Agenttitaidoillasi osaat lukea hänen kasvonpiirteitään ja siten voit aakkosia kyselemällä päätellä, mitä aakkosia sanaan kuuluu. Aikaa on kuitenkin hyvin rajoitetusti, joten sinulla on rajoitettu määrä aakkosarvauksia.<br><br>Kykenetkö arvaamaan sanan ennen hirsipuun valmistumista ja selviytymään tästä pulmallisesta tilanteesta?",
+
   "victory": "Voitit!",
   "game_over": "Hävisit!",
   "victory_message": "Arvasit oikein, oikea sana oli ",

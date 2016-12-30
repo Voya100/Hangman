@@ -8,7 +8,7 @@ export class SettingsService {
 
   // Changeable settings
   language: string = 'english';
-  difficulty = 0;
+  difficulty: number = 0;
 
   // Set based on settings
   lang: any = {alphabet: []};
@@ -31,6 +31,7 @@ export class SettingsService {
     return this.storage.get('language').then((lang) => {
       if(lang !== null){
         this.language = lang;
+        this.initialized = true;
       }
       console.log("Setting test:", lang);
     }).then(() => {
@@ -41,8 +42,6 @@ export class SettingsService {
             this.difficulty = value;
           }
       })
-    }).then(() => {
-      this.initialized = true;
     })    
   }
 
@@ -61,6 +60,7 @@ export class SettingsService {
   updateLanguage(lang: string): Promise<any>{
     this.language = lang;
     return this.storage.set('language', lang).then(() => {
+      this.initialized = true;
       return this.getLanguageFiles();
     });
   }
