@@ -53,7 +53,7 @@ export class HangmanPage implements OnInit {
   // Gives game over screen and adds victory/loss
   gameOver(){
     let gameOverScreen = this.alertCtrl.create({
-      title: this.data.victory ? this.settings.lang.victory : this.settings.lang.victory,
+      title: this.data.victory ? this.settings.lang.victory : this.settings.lang.game_over,
       message: this.data.victory ? this.settings.lang.victory_message + this.data.word + "." : 
                                    this.settings.lang.game_over_message + this.data.word + ".",
       buttons: [
