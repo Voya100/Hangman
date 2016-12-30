@@ -33,10 +33,14 @@ export class GameDataService {
 
   init(){
     this.storage.get('victories').then((value) => {
-      this.victories = value;
+      if(value !== null){
+        this.victories = value;
+      }
     })
     this.storage.get('losses').then((value) => {
-      this.losses = value;
+      if(value !== null){
+        this.losses = value;
+      }
     })
   }
 
