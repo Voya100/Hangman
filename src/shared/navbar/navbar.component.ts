@@ -26,4 +26,18 @@ export class NavBarComponent implements OnInit {
       this.navCtrl.setRoot(StatisticsPage);
     }
   }
+
+  currentPage(){
+    let page = this.navCtrl.getActive().instance;
+    console.log(page);
+    if(page instanceof HangmanPage){
+      return 'Hangman';
+    }else if(page instanceof SettingsPage){
+      return 'Settings';
+    }else if(page instanceof StatisticsPage){
+      return 'Statistics';
+    }else{
+      return null;
+    }
+  }
 }

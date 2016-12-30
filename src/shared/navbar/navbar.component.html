@@ -1,8 +1,14 @@
 <ion-navbar>
   <ion-title>{{settings.lang?.hangman}}</ion-title>
   <ion-buttons end>
-    <button ion-button icon-only (click)="changePage('Hangman')"><ion-icon name="home"></ion-icon></button>
-    <button ion-button icon-only (click)="changePage('Statistics')"><ion-icon name="stats"></ion-icon></button>
-    <button ion-button icon-only (click)="changePage('Settings')"><ion-icon name="settings"></ion-icon></button>
+    <button ion-button icon-only (click)="changePage('Hangman')">
+      <ion-icon name="home" [class.activeIcon]="currentPage() == 'Hangman'"></ion-icon>
+    </button>
+    <button ion-button icon-only (click)="changePage('Statistics')">
+      <ion-icon name="stats" [class.activeIcon]="currentPage() == 'Statistics'"></ion-icon>
+    </button>
+    <button ion-button icon-only (click)="changePage('Settings')">
+      <ion-icon name="settings" [class.activeIcon]="currentPage() == 'Settings'"></ion-icon>
+    </button>
   </ion-buttons>
 </ion-navbar>
