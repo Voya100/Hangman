@@ -1,7 +1,7 @@
 <ion-header>
     <navbar></navbar>
 </ion-header>
-<ion-content class="no-scroll">
+<ion-content class="no-scroll" (swipeRight)="prevPage()" (swipeLeft)="nextPage()">
   <ion-list>
     <ion-item-divider>
       <h1>{{settings.lang?.settings}}</h1>

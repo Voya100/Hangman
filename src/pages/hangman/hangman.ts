@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import {AlertController, NavController, LoadingController } from 'ionic-angular';
 
+import { SettingsPage } from '../settings/settings';
+import { StatisticsPage } from '../statistics/statistics'
+
 import { GameDataService } from '../../services/game-data.service'
 import { SettingsService } from '../../services/settings.service'
 import { WordRandomizerService } from '../../services/word-randomizer.service'
@@ -73,6 +76,14 @@ export class HangmanPage implements OnInit {
       this.data.add_loss();
     }
     gameOverScreen.present();
+  }
+
+  nextPage(){
+    this.navCtrl.setRoot(StatisticsPage);
+  }
+
+  prevPage(){
+    this.navCtrl.setRoot(SettingsPage);
   }
 
 }

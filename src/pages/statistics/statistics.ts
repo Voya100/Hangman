@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
+
+import { HangmanPage } from '../hangman/hangman';
+import { SettingsPage } from '../settings/settings'
 
 import { GameDataService } from '../../services/game-data.service'
 import { SettingsService } from '../../services/settings.service'
@@ -9,6 +12,7 @@ import { SettingsService } from '../../services/settings.service'
 })
 export class StatisticsPage implements OnInit {
   constructor(private alertCtrl: AlertController,
+              private navCtrl: NavController,
               private data: GameDataService,
               private settings: SettingsService) { }
 
@@ -40,6 +44,14 @@ export class StatisticsPage implements OnInit {
       ]
     });
     confirm.present();
+  }
+
+  nextPage(){
+    this.navCtrl.setRoot(SettingsPage);
+  }
+
+  prevPage(){
+    this.navCtrl.setRoot(HangmanPage);
   }
 
 }

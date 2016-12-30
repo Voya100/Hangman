@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular'
+
+import { HangmanPage } from '../hangman/hangman';
+import { StatisticsPage } from '../statistics/statistics'
 
 import { SettingsService } from '../../services/settings.service'
 
@@ -9,9 +13,17 @@ export class SettingsPage  {
 
   difficulties = ['easy', 'medium', 'hard'];
 
-  constructor(private settings: SettingsService) { }
+  constructor(private navCtrl: NavController, private settings: SettingsService) { }
 
   updateLanguage(value){
     this.settings.updateLanguage(value);
+  }
+
+  nextPage(){
+    this.navCtrl.setRoot(HangmanPage);
+  }
+
+  prevPage(){
+    this.navCtrl.setRoot(StatisticsPage);
   }
 }
