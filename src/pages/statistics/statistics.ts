@@ -20,11 +20,11 @@ export class StatisticsPage implements OnInit {
 
   
   victory_percent(){
-    return this.data.victories ? Math.round(this.data.victories / (this.data.victories + this.data.losses) * 100) : '-';
+    return this.data.victories() ? Math.round(this.data.victories() / (this.data.victories() + this.data.losses()) * 100) : '-';
   }
 
   loss_percent(){
-    return this.data.losses ? Math.round(this.data.losses / (this.data.victories + this.data.losses) * 100) : "-";
+    return this.data.losses() ? Math.round(this.data.losses() / (this.data.victories() + this.data.losses()) * 100) : "-";
   }
 
   reset(){

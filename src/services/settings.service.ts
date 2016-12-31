@@ -7,12 +7,17 @@ import 'rxjs/add/operator/toPromise';
 export class SettingsService {
 
   // Changeable settings
-  language: string = 'english';
-  difficulty: number = 0;
+  settings = {
+    language: 'english',
+    dictionary: 'english',
+    difficulty: 0,
+    onlineMode: true
+  }
 
   // Set based on settings
-  lang: any = {alphabet: []};
+  lang: any = {};
   wordList: string[] = [];
+  alphabet: string[] = [];
 
   // Constants
   readonly max_guesses = 9;
@@ -22,51 +27,74 @@ export class SettingsService {
 
   
   initialized = false;
+  
 
   constructor(private http: Http, private storage: Storage) {
   }
 
   // Initialises settings
   init(){
-    return this.storage.get('language').then((lang) => {
-      if(lang !== null){
-        this.language = lang;
+    return this.storage.get('settings').then((settings) => {
+      if(settings !== null){
+        settings.difficulty = parseInt(settings.difficulty);
+        this.settings = settings;
         this.initialized = true;
       }
-      console.log("Setting test:", lang);
-    }).then(() => {
-      return this.getLanguageFiles();
-    }).then(() => {
-        return this.storage.get('difficulty').then((value) => {
-          if(value !== null){
-            this.difficulty = value;
-          }
-      })
+      console.log(settings);
+    })
+    .then(() => {
+      return this.getFiles();
     })    
   }
 
-  getLanguageFiles(){
+  getLanguageFile(){
+    return this.http.get('languages/' + this.settings.language + '.json').toPromise().then((data) =>{
+      this.lang = data.json();
+      console.log(data);
+    })
+  }
+
+  getDictionaryFile(){
+    return this.http.get('dictionaries/' + this.settings.dictionary + '.json').toPromise().then((data) =>{
+      let dictData = data.json();
+      this.alphabet = dictData.alphabet;
+      this.wordList = dictData.words;
+      console.log(dictData);
+    });
+  }
+
+  getFiles(){
     return Promise.all([
-      this.http.get('lang/' + this.language + '.json').toPromise().then((data) =>{
-        this.lang = data.json();
-      }),
-      this.http.get('lang/word-lists/' + this.language + '-words.json').toPromise().then((data) =>{
-        this.wordList = data.json();
-      })
-    ]);
+      this.getLanguageFile(),
+      this.getDictionaryFile()
+    ])
   }
 
   // Updates language setting
   updateLanguage(lang: string): Promise<any>{
-    this.language = lang;
-    return this.storage.set('language', lang).then(() => {
+    this.settings.language = lang;
+    return this.storage.set('settings', this.settings).then(() => {
       this.initialized = true;
-      return this.getLanguageFiles();
+      return this.getLanguageFile();
     });
   }
 
+  // Updates dictionary setting
+  updateDictionary(dict: string): Promise<any>{
+    this.settings.dictionary = dict;
+    return this.storage.set('settings',this.settings).then(() => {
+      return this.getDictionaryFile();
+    })
+  }
+
+  // Updates difficulty setting
   updateDifficulty(difficulty: number){
-    this.difficulty = difficulty;
-    this.storage.set('difficulty', difficulty);
+    this.settings.difficulty = difficulty;
+    this.storage.set('settings', this.settings);
+  }
+
+  updateOnlineMode(online: boolean){
+    this.settings.onlineMode = online;
+    this.storage.set('settings', this.settings);
   }
 }

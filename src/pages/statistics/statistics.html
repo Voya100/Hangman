@@ -8,13 +8,13 @@
       <h1>{{settings.lang?.statistics}}</h1>
     </ion-item-divider>
     <ion-item>
-      {{settings.lang?.games}} <span class="stat" item-right>{{data.victories + data.losses}}</span>
+      {{settings.lang?.games}} <span class="stat" item-right>{{data.victories() + data.losses()}}</span>
     </ion-item>
     <ion-item>
-      {{settings.lang?.victories}} <span class="stat" item-right>{{data.victories}} <span *ngIf="data.victories">({{victory_percent()}} %)</span></span>
+      {{settings.lang?.victories}} <span class="stat" item-right>{{data.victories()}} <span *ngIf="data.victories()">({{victory_percent()}} %)</span></span>
     </ion-item>
     <ion-item>
-      {{settings.lang?.losses}} <span class="stat" item-right>{{data.losses}} <span *ngIf="data.losses">({{loss_percent()}} %)</span></span>
+      {{settings.lang?.losses}} <span class="stat" item-right>{{data.losses()}} <span *ngIf="data.losses()">({{loss_percent()}} %)</span></span>
     </ion-item>
   </ion-list>
   <button ion-button block color="primary"  (click)="reset()">{{settings.lang?.reset}}</button>

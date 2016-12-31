@@ -8,7 +8,15 @@
     </ion-item-divider>
     <ion-item>
       <ion-label>{{settings.lang?.language}}</ion-label>
-      <ion-select [ngModel]="settings.language" (ionChange)="updateLanguage($event)" [selectedText]="settings.lang[settings.language]">
+      <ion-select [ngModel]="settings.settings.language" (ionChange)="updateLanguage($event)" [selectedText]="settings.lang[settings.settings.language]">
+        <ion-option *ngFor="let lang of settings.languages" [value]="lang">
+          {{settings.lang[lang]}}
+          </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{settings.lang?.dictionary}}</ion-label>
+      <ion-select [ngModel]="settings.settings.dictionary" (ionChange)="updateDictionary($event)" [selectedText]="settings.lang[settings.settings.dictionary]">
         <ion-option *ngFor="let lang of settings.languages" [value]="lang">
           {{settings.lang[lang]}}
           </ion-option>
@@ -16,12 +24,16 @@
     </ion-item>
     <ion-item>
       <ion-label>{{settings.lang?.difficulty}}</ion-label>
-      <ion-select [ngModel]="settings.difficulty" (ionChange)="settings.updateDifficulty($event)" 
-                  [selectedText]="settings.lang[difficulties[settings.difficulty]]">
+      <ion-select [ngModel]="settings.settings.difficulty" (ionChange)="settings.updateDifficulty($event)" 
+                  [selectedText]="settings.lang[difficulties[settings.settings.difficulty]]">
         <ion-option value="0">{{settings.lang?.easy}}</ion-option>
         <ion-option value="1">{{settings.lang?.medium}}</ion-option>
         <ion-option value="2">{{settings.lang?.hard}}</ion-option>
       </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{settings.lang?.online_mode}}</ion-label>
+      <ion-toggle [ngModel]="settings.settings.onlineMode" [disabled]="settings.settings.dictionary != 'english'" (ionChange)="updateOnlineMode($event)"></ion-toggle>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -19,6 +19,14 @@ export class SettingsPage  {
     this.settings.updateLanguage(value);
   }
 
+  updateDictionary(value){
+    this.settings.updateDictionary(value);
+  }
+
+  updateOnlineMode(e){
+    this.settings.updateOnlineMode(e._checked);
+  }
+
   nextPage(){
     this.navCtrl.setRoot(HangmanPage);
   }

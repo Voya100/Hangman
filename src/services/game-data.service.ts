@@ -10,49 +10,51 @@ import { WordRandomizerService } from './word-randomizer.service'
 @Injectable()
 export class GameDataService {
 
-  // Statistics
-  victories: number = 0;
-  losses: number = 0;
-
   // Game status
   victory: boolean = false;
   guesses: string[] = [];
   guesses_left: number;
   word: string = "";
   word_guess:string = "";
-  language: string;
+  dictionary: string;
 
-  
+// Statistics
+  private statistics = {
+    victories: 0,
+    losses: 0
+  }
+
+  victories(){
+    return this.statistics.victories;
+  }
+  losses(){
+    return this.statistics.losses;
+  }
 
   constructor(private storage: Storage,
               private settings: SettingsService,
               private wordRandomizer: WordRandomizerService) { 
                 this.guesses_left = settings.max_guesses;
-                this.language = settings.language;
+                this.dictionary = settings.settings.dictionary;
               }
 
   init(){
-    this.storage.get('victories').then((value) => {
-      if(value !== null){
-        this.victories = value;
-      }
-    })
-    this.storage.get('losses').then((value) => {
-      if(value !== null){
-        this.losses = value;
+    this.storage.get('statistics').then((stats) => {
+      if(stats !== null){
+        this.statistics = stats;
       }
     })
   }
 
 
   add_victory(){
-    this.victories++;
-    this.storage.set('victories', this.victories);
+    this.statistics.victories++;
+    this.storage.set('statistics', this.statistics);
   }
 
   add_loss(){
-    this.losses++;
-    this.storage.set('losses', this.losses);
+    this.statistics.losses++;
+    this.storage.set('statistics', this.statistics);
   }
 
   // Guesses a character. False guesses reduce amount of guesses.
@@ -64,7 +66,7 @@ export class GameDataService {
     }else{
       // Harder difficulties have fewer guesses
       if(this.guesses_left == this.settings.max_guesses){
-        this.guesses_left -= this.settings.difficulty;
+        this.guesses_left -= this.settings.settings.difficulty;
       }
 
       this.guesses_left -= 1;
@@ -86,10 +88,9 @@ export class GameDataService {
   }
 
   reset_statistics(){
-    this.victories = 0;
-    this.losses = 0;
-    this.storage.set('victories', 0);
-    this.storage.set('losses', 0);
+    this.statistics.victories = 0;
+    this.statistics.losses = 0;
+    this.storage.set('statistics', this.statistics);
   }
   
   // Reveals characters in the word which are guessed correctly
@@ -99,7 +100,7 @@ export class GameDataService {
     let reveal = "";
     for(var i=0; i<this.word.length; i++){
       // Character is in the word or it isn't in the alphabet
-      if(this.guesses.indexOf(this.word[i]) > -1 || this.settings.lang.alphabet.indexOf(this.word[i]) == -1){
+      if(this.guesses.indexOf(this.word[i]) > -1 || this.settings.alphabet.indexOf(this.word[i]) == -1){
         reveal += this.word[i];
       }else{
         reveal += "_";

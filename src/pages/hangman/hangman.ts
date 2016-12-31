@@ -30,9 +30,9 @@ export class HangmanPage implements OnInit {
       // Reset if app is opened (no word yet)
       if(this.data.word == ""){
         this.reset();
-      }else if(this.data.language !== this.settings.language){
-        // Language has been changed, word needs to be reset
-        this.data.language = this.settings.language;
+      }else if(this.data.dictionary !== this.settings.settings.dictionary){
+        // Dictionary has been changed, word needs to be reset
+        this.data.dictionary = this.settings.settings.dictionary;
         this.reset();
       }
     }
@@ -55,9 +55,11 @@ export class HangmanPage implements OnInit {
       buttons: [{
         text: 'Continue',
         handler: data => {
-          this.settings.updateLanguage(data).then(() => {
-            this.showStory();
-            this.data.reset_game();
+          this.settings.updateLanguage(data).then(()=> {
+            this.settings.updateDictionary(data).then(() => {
+              this.showStory();
+              this.data.reset_game();
+            })
           })
         }
       }],

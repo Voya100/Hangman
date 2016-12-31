@@ -1,5 +1,4 @@
 {
-  "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
   "hangman": "Hangman",
   "story": "Story",
   "continue": "Continue",
@@ -22,10 +21,12 @@
 
   "settings": "Settings",
   "language": "Language",
+  "dictionary": "Dictionary",
   "english": "English",
   "finnish": "Finnish",
   "difficulty": "Difficulty",
   "easy": "Easy",
   "medium": "Medium",
-  "hard": "Hard"
+  "hard": "Hard",
+  "online_mode": "Online mode"
 }

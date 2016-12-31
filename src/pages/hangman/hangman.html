@@ -10,8 +10,8 @@
           {{data.word_guess}}
         </div>
         <div class="alphabet_container">
-          <button class="alphabet button" *ngFor="let a of settings.lang.alphabet" (click)="guess(a)" 
-                  [disabled]="data.guesses.indexOf(a) !== -1" [class.long]="settings.lang.alphabet.length >= 29">{{a}}</button>
+          <button class="alphabet button" *ngFor="let a of settings.alphabet" (click)="guess(a)" 
+                  [disabled]="data.guesses.indexOf(a) !== -1" [class.long]="settings.alphabet.length >= 29">{{a}}</button>
         </div>
       </div>
     </div>

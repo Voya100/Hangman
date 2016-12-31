@@ -1,5 +1,4 @@
 {
-  "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Ä","Ö"],
   "hangman": "Hirsipuu",
   "story": "Tarina",
   "continue": "Jatka",
@@ -22,10 +21,12 @@
 
   "settings": "Asetukset",
   "language": "Kieli",
+  "dictionary": "Sanakirja",
   "english": "Englanti",
   "finnish": "Suomi",
   "difficulty": "Vaikeusaste",
   "easy": "Helppo",
   "medium": "Keskivaikea",
-  "hard": "Vaikea"
+  "hard": "Vaikea",
+  "online_mode": "Online-tila"
 }
