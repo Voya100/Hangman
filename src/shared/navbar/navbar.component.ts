@@ -29,7 +29,6 @@ export class NavBarComponent implements OnInit {
 
   currentPage(){
     let page = this.navCtrl.getActive().instance;
-    console.log(page);
     if(page instanceof HangmanPage){
       return 'Hangman';
     }else if(page instanceof SettingsPage){
