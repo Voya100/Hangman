@@ -2,7 +2,8 @@
   "hangman": "Hangman",
   "story": "Story",
   "continue": "Continue",
-  "story_content": "You are a secret agent working for the Government. One day you get a secret mission in which you infiltrate a crime organization. You try to get their trust by taking a part in their bank heist, but then they betray you by knocking you out at the crime scene. <br><br>The authorities found you while you were passed out and deemed you guilty. When you woke up, they had already started preparing the gallows for you!<br><br>Luckily the Government had given you a secret keyword which could help you escape this situation. You sadly got hit in the head so hard that you forgot what the word was.<br><br>You know that the executioner knows what the word is, and with your agent skills you can determine from his face if a character is in the word, if you ask him about it. If you manage to guess all characters, you will surely be able to remember what the word was. Your time is however limited, so you can do only a limited amount of guesses.<br><br>Can you guess the word and survive this challenging situation?",
+  "story_content":
+  "You are a secret agent working for the Government. One day you get a secret mission in which you infiltrate a crime organization. You try to get their trust by taking a part in their bank heist, but then they betray you by knocking you out at the crime scene. <br><br>The authorities found you while you were passed out and deemed you guilty. When you woke up, they had already started preparing the gallows for you!<br><br>Luckily the Government had given you a secret keyword which could help you escape this situation. You sadly got hit in the head so hard that you forgot what the word was.<br><br>You know that the executioner knows what the word is, and with your agent skills you can determine from his face if a character is in the word, if you ask him about it. If you manage to guess all characters, you will surely be able to remember what the word was. Your time is however limited, so you can do only a limited amount of guesses.<br><br>Can you guess the word and survive this challenging situation?",
 
   "victory": "Victory!",
   "game_over": "Game over!",
@@ -24,6 +25,7 @@
   "dictionary": "Dictionary",
   "english": "English",
   "finnish": "Finnish",
+  "swedish": "Swedish",
   "difficulty": "Difficulty",
   "easy": "Easy",
   "medium": "Medium",

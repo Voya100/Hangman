@@ -23,7 +23,7 @@ export class SettingsService {
   readonly max_guesses = 9;
 
   // Supported languages
-  readonly languages:string[] = ['english', 'finnish'];
+  readonly languages:string[] = ['english', 'finnish', 'swedish'];
 
   
   initialized = false;
