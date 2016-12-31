@@ -16,14 +16,12 @@ export class MyApp {
 
   constructor(platform: Platform, gameData: GameDataService, settings: SettingsService) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      
+      // Get settings files and apply them before launch
       settings.init().then(() => {
+        this.rootPage = HangmanPage;
         gameData.init();
         Splashscreen.hide();
-        this.rootPage = HangmanPage;
       })
 
     });

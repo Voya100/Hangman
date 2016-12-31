@@ -6,6 +6,8 @@ import { StatisticsPage } from '../statistics/statistics'
 
 import { SettingsService } from '../../services/settings.service'
 
+// Settings page contains all setting options. All changes are saved to memory.
+
 @Component({
   templateUrl: 'settings.html'
 })

@@ -9,6 +9,8 @@ import { GameDataService } from '../../services/game-data.service'
 import { SettingsService } from '../../services/settings.service'
 import { WordRandomizerService } from '../../services/word-randomizer.service'
 
+// Hangman page is the heart of the application. It contains the game and all game interactions using data from GameService.
+
 @Component({
   templateUrl: 'hangman.html'
 })
@@ -27,7 +29,7 @@ export class HangmanPage implements OnInit {
     if(!this.settings.initialized){
       this.askLanguage();
     }else{
-      // Reset if app is opened (no word yet)
+      // Reset if app is just opened (no word yet)
       if(this.data.word == ""){
         this.reset();
       }else if(this.data.dictionary !== this.settings.settings.dictionary){
@@ -54,10 +56,11 @@ export class HangmanPage implements OnInit {
       inputs: inputs,
       buttons: [{
         text: 'Continue',
-        handler: data => {
-          this.settings.updateLanguage(data).then(()=> {
-            this.settings.updateDictionary(data).then(() => {
+        handler: lang => {
+          this.settings.updateLanguage(lang).then(()=> {
+            this.settings.updateDictionary(lang).then(() => {
               this.showStory();
+              this.data.dictionary = lang;
               this.data.reset_game();
             })
           })

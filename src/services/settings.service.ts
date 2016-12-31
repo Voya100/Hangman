@@ -3,6 +3,9 @@ import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage'
 import 'rxjs/add/operator/toPromise';
 
+// SettingsService contain all game settings and language/dictionary information
+// Settings are saved to local memory
+
 @Injectable()
 export class SettingsService {
 
@@ -25,14 +28,12 @@ export class SettingsService {
   // Supported languages
   readonly languages:string[] = ['english', 'finnish', 'swedish'];
 
-  
   initialized = false;
   
-
   constructor(private http: Http, private storage: Storage) {
   }
 
-  // Initialises settings
+  // Initialises settings, returns a promise
   init(){
     return this.storage.get('settings').then((settings) => {
       if(settings !== null){
@@ -40,29 +41,28 @@ export class SettingsService {
         this.settings = settings;
         this.initialized = true;
       }
-      console.log(settings);
     })
     .then(() => {
       return this.getFiles();
     })    
   }
-
+  // Gets language file which contains all text inside the app, returns a promise.
   getLanguageFile(){
     return this.http.get('languages/' + this.settings.language + '.json').toPromise().then((data) =>{
       this.lang = data.json();
-      console.log(data);
     })
   }
 
+  // Gets dictionary file which contains a list of words, returns a promise.
   getDictionaryFile(){
     return this.http.get('dictionaries/' + this.settings.dictionary + '.json').toPromise().then((data) =>{
       let dictData = data.json();
       this.alphabet = dictData.alphabet;
       this.wordList = dictData.words;
-      console.log(dictData);
     });
   }
 
+  // Gets language and dictionary files, returns a promise
   getFiles(){
     return Promise.all([
       this.getLanguageFile(),
@@ -93,6 +93,7 @@ export class SettingsService {
     this.storage.set('settings', this.settings);
   }
 
+  // Updates onlineMode setting
   updateOnlineMode(online: boolean){
     this.settings.onlineMode = online;
     this.storage.set('settings', this.settings);
