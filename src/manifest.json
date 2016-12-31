@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "Hangman",
+  "short_name": "Hangman",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
