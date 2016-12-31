@@ -9,16 +9,27 @@ import { SettingsService } from './settings.service'
 export class WordRandomizerService {
 
   words: string[] = [];
-  
-  // Hard: 1000-25000, Medium: 25000-250000, Easy: 250000
-  difficulty = 1000000;
+  errorCount: number = 0;
 
   constructor(private http: Http,
               private settings: SettingsService) { }
 
   // Gets 15 new words from API and saves them to words. Returns a promise.
   getWords(){
-    let url = "http://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=250000&maxCorpusCount=-1&minDictionaryCount=10&excludePartOfSpeech=proper-noun,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&hasDictionaryDef=true&includePartOfSpeech=noun,adjective&limit=15&maxLength=14&api_key=" + apiKey;
+    let difficulty = this.settings.settings.difficulty, 
+        minCorpusCount = 130000, 
+        maxCorpusCount = -1;
+
+    // Corpus count determines how common words are
+    if(difficulty == 1){
+      minCorpusCount = 50000;
+      maxCorpusCount = 130000
+    }else if(difficulty == 2){
+      minCorpusCount = 28000;
+      maxCorpusCount = 50000;
+    }
+
+    let url = "http://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=" + minCorpusCount + "&maxCorpusCount=" + maxCorpusCount + "&minDictionaryCount=10&excludePartOfSpeech=proper-noun,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&hasDictionaryDef=true&includePartOfSpeech=noun,adjective&limit=15&maxLength=14&api_key=" + apiKey;
 
 
     return this.http.get(url).toPromise().then((response) => {
@@ -45,7 +56,7 @@ export class WordRandomizerService {
   getWord(): Promise<string>{
     let promise = new Promise((resolve, reject) => {
       let resolved = false;
-      if(this.settings.language !== 'english'){
+      if(this.settings.settings.dictionary !== 'english' || !this.settings.settings.onlineMode || this.errorCount >= 2){
         resolve(this.getWordFromList());
         return;
       }
@@ -66,6 +77,7 @@ export class WordRandomizerService {
             .catch(() => {
               if(!resolved){
                 resolve(this.getWordFromList());
+                this.errorCount++;
                 console.log("Error caught")
               }
             })
