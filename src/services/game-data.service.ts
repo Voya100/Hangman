@@ -18,7 +18,7 @@ export class GameDataService {
   word_guess:string = "";
   dictionary: string;
 
-// Statistics
+  // Statistics
   private statistics = {
     victories: 0,
     losses: 0
@@ -34,24 +34,27 @@ export class GameDataService {
   constructor(private storage: Storage,
               private settings: SettingsService,
               private wordRandomizer: WordRandomizerService) { 
-                this.guesses_left = settings.max_guesses;
-                this.dictionary = settings.settings.dictionary;
-              }
+    this.guesses_left = settings.max_guesses;
+    this.dictionary = settings.settings.dictionary;
+  }
 
+  // Initialises statics from local memory and set current dictionary
   init(){
     this.storage.get('statistics').then((stats) => {
       if(stats !== null){
         this.statistics = stats;
       }
     })
+    this.dictionary = this.settings.settings.dictionary;
   }
 
-
+  // Adds a victory and saves statistics
   add_victory(){
     this.statistics.victories++;
     this.storage.set('statistics', this.statistics);
   }
 
+  // Adds a loss and saves statistics
   add_loss(){
     this.statistics.losses++;
     this.storage.set('statistics', this.statistics);
@@ -72,12 +75,13 @@ export class GameDataService {
       this.guesses_left -= 1;
       if(this.guesses_left <= 0){
         this.victory = false;
-        console.log("Game over");
         return true;
       }
+      return false;
     }
   }
 
+  // Resets game by getting a new word and re-initialising variables
   reset_game(){
     return this.wordRandomizer.getWord().then((word) =>{
       this.word = word;
@@ -87,6 +91,7 @@ export class GameDataService {
     });
   }
 
+  // Resets statics information and saves changes to memory
   reset_statistics(){
     this.statistics.victories = 0;
     this.statistics.losses = 0;
