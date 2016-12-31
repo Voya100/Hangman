@@ -7,6 +7,8 @@ import { SettingsPage } from '../settings/settings'
 import { GameDataService } from '../../services/game-data.service'
 import { SettingsService } from '../../services/settings.service'
 
+// StatisticsPage contains statistical info and gives option to reset them.
+
 @Component({
   templateUrl: 'statistics.html'
 })
@@ -20,11 +22,11 @@ export class StatisticsPage implements OnInit {
 
   
   victory_percent(){
-    return this.data.victories() ? Math.round(this.data.victories() / (this.data.victories() + this.data.losses()) * 100) : '-';
+    return Math.round(this.data.victories() / (this.data.victories() + this.data.losses()) * 100);
   }
 
   loss_percent(){
-    return this.data.losses() ? Math.round(this.data.losses() / (this.data.victories() + this.data.losses()) * 100) : "-";
+    return Math.round(this.data.losses() / (this.data.victories() + this.data.losses()) * 100);
   }
 
   reset(){
