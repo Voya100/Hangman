@@ -26,12 +26,14 @@ export class NavBarComponent implements OnInit {
     // If you know a better place to place this (in this kind of app structure), feel free to tell me. :)
     this.platform.registerBackButtonAction(() => {
       const portal = this.app._appRoot._getPortal();
-      // If there is an overlay view (setting select, etc.), and it isn't language initialisation, pop them
-      if(portal.length() > 0 && this.settings.initialized){
-          portal.pop();
-      }else if(!(this.navCtrl.getActive().instance instanceof HangmanPage)){
-        // Move to main
-        this.navCtrl.setRoot(HangmanPage);
+      if(!(this.navCtrl.getActive().instance instanceof HangmanPage)){
+        // If there is an overlay view (setting select, etc.), and it isn't language initialisation, pop them
+        if(portal.length() > 0 && this.settings.initialized){
+            portal.pop();
+        }else{
+          // Move to main
+          this.navCtrl.setRoot(HangmanPage);
+        }
       }
     });
   }
