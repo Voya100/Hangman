@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular'
+import { NavController, AlertController } from 'ionic-angular'
 
 import { HangmanPage } from '../hangman/hangman';
 import { StatisticsPage } from '../statistics/statistics'
@@ -15,7 +15,21 @@ export class SettingsPage  {
 
   difficulties = ['easy', 'medium', 'hard'];
 
-  constructor(private navCtrl: NavController, private settings: SettingsService) { }
+  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private settings: SettingsService) { }
+
+  openInfo(){
+    let infoScreen = this.alertCtrl.create({
+      message: this.settings.lang.setting_info,
+      buttons: [
+        {
+          text: this.settings.lang.close
+        }
+      ],
+      enableBackdropDismiss: false,
+      cssClass: 'info_screen'
+    });
+    infoScreen.present();
+  }
 
   updateLanguage(value){
     this.settings.updateLanguage(value);

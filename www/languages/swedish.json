@@ -29,5 +29,7 @@
   "easy": "Lätt",
   "medium": "Medium",
   "hard": "Svårt",
-  "online_mode": "Uppkoplad"
+  "online_mode": "Uppkoplad",
+  "setting_info": "<b>Språk</b>:<br>Språket som app använder.<br><br><b>Ordbok:</b><br>Orden som spelet använder.<br><br><b>Svårighet:</b><br> Större svårigheterna har färre gissarna. Engelska ord (från nätet) är också rarare.<br><br><b>Uppkoplad:</b><br>Om uppkoplad är aktiv, hämtar app engelska ord från nätet. Annars hämtas ord från lokalt minnet. Andra språk använder alltid lokalt minnet.",
+  "close": "sluta"
 }

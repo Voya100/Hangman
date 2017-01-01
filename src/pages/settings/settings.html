@@ -4,7 +4,7 @@
 <ion-content class="no-scroll" (swipeRight)="prevPage()" (swipeLeft)="nextPage()">
   <ion-list>
     <ion-item-divider>
-      <h1>{{settings.lang?.settings}}</h1>
+      <h1>{{settings.lang?.settings}}<ion-icon name="information-circle" class='info' tappable (tap)="openInfo()"></ion-icon></h1>
     </ion-item-divider>
     <ion-item>
       <ion-label>{{settings.lang?.language}}</ion-label>
@@ -16,7 +16,7 @@
     </ion-item>
     <ion-item>
       <ion-label>{{settings.lang?.dictionary}}</ion-label>
-      <ion-select [ngModel]="settings.settings.dictionary" (ionChange)="updateDictionary($event)" [selectedText]="settings.lang[settings.settings.dictionary]">
+      <ion-select [cancelText]="settings.lang.cancel" [ngModel]="settings.settings.dictionary" (ionChange)="updateDictionary($event)" [selectedText]="settings.lang[settings.settings.dictionary]">
         <ion-option *ngFor="let lang of settings.languages" [value]="lang">
           {{settings.lang[lang]}}
           </ion-option>
@@ -24,7 +24,7 @@
     </ion-item>
     <ion-item>
       <ion-label>{{settings.lang?.difficulty}}</ion-label>
-      <ion-select [ngModel]="settings.settings.difficulty" (ionChange)="settings.updateDifficulty($event)" 
+      <ion-select [cancelText]="settings.lang.cancel" [ngModel]="settings.settings.difficulty" (ionChange)="settings.updateDifficulty($event)" 
                   [selectedText]="settings.lang[difficulties[settings.settings.difficulty]]">
         <ion-option value="0">{{settings.lang?.easy}}</ion-option>
         <ion-option value="1">{{settings.lang?.medium}}</ion-option>

@@ -29,5 +29,7 @@
   "easy": "Helppo",
   "medium": "Keskivaikea",
   "hard": "Vaikea",
-  "online_mode": "Online-tila"
+  "online_mode": "Online-tila",
+  "setting_info": "<b>Kieli</b>:<br>Sovelluksen kieli.<br><br><b>Sanakirja:</b><br>Pelin käyttämät sanat.<br><br><b>Vaikeusaste:</b><br> Määrittää arvausyrityksien lukumäärän. Englannin netistä haetut sanat ovat myös harvinaisempia isommilla vaikeusasteilla.<br><br><b>Online-tia:</b><br>Jos on päällä, englanninkielisen sanakirjan sanat haetaan internetistä, mikäli yhteys on käytettävissä. Muutoin sanat haetaan paikallisesta muistista. Muut kielet eivät käytä internet-yhteyttä.",
+  "close": "sulje"
 }

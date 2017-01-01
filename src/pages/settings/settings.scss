@@ -1,0 +1,27 @@
+.info{
+  float: right;
+}
+.info_screen{
+  .alert-button{
+    width: 100%;
+    background: map-get($colors, primary) !important;
+    color: white !important;
+    .button-inner{
+      justify-content: center !important;
+    }
+  }
+}
+
+.info_screen{
+  width:100%;
+  height:100%;
+  .alert-head{
+    padding:10px;
+  }
+  .alert-message{
+    max-height:70%;
+  }
+  .alert-button{
+    min-height: 30px;
+  }
+}

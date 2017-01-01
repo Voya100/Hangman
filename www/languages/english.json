@@ -30,5 +30,7 @@
   "easy": "Easy",
   "medium": "Medium",
   "hard": "Hard",
-  "online_mode": "Online mode"
+  "online_mode": "Online mode",
+  "setting_info": "<b>Language</b>:<br>Language of the app.<br><br><b>Dictionary:</b><br>What words game uses.<br><br><b>Difficulty:</b><br> How many guess attempts before game ends. Online English words also have less common words with higher difficulties.<br><br><b>Online mode:</b><br>If active, English dictionary's words are fetched online, assuming there is an internet connection. When disabled, words are fetched from local memory. Non-english dictionaries don't use internet connection.",
+  "close": "close"
 }
