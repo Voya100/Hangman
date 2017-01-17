@@ -34,6 +34,8 @@ export class NavBarComponent implements OnInit {
           // Move to main
           this.navCtrl.setRoot(HangmanPage);
         }
+      }else{
+        this.platform.exitApp();
       }
     });
   }
